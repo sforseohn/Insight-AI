@@ -14,8 +14,9 @@ public class Analysis {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(nullable = false)
-    private String diary;
+    @OneToOne
+    @JoinColumn(name = "diary_id", nullable = false)
+    private Diary diary;
 
     // Question 1
     @ElementCollection
@@ -45,7 +46,7 @@ public class Analysis {
     @ElementCollection
     private List<String> emotionKeywords;
 
-    // getters and setters
+    // Getter and Setter
     public Long getId() {
         return id;
     }
@@ -62,11 +63,11 @@ public class Analysis {
         this.user = user;
     }
 
-    public String getDiary() {
+    public Diary getDiary() {
         return diary;
     }
 
-    public void setDiary(String diary) {
+    public void setDiary(Diary diary) {
         this.diary = diary;
     }
 
@@ -141,4 +142,6 @@ public class Analysis {
     public void setEmotionKeywords(List<String> emotionKeywords) {
         this.emotionKeywords = emotionKeywords;
     }
+
+    // getters and setters
 }

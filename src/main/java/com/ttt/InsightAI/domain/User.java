@@ -1,7 +1,9 @@
 package com.ttt.InsightAI.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -19,8 +21,11 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Analysis> analyses;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Diary> diaries = new HashSet<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Analysis> analyses = new HashSet<>();
 
     // getters and setters
 
@@ -56,11 +61,20 @@ public class User {
         this.password = password;
     }
 
-    public List<Analysis> getAnalyses() {
+
+    public Set<Diary> getDiaries() {
+        return diaries;
+    }
+
+    public void setDiaries(Set<Diary> diaries) {
+        this.diaries = diaries;
+    }
+
+    public Set<Analysis> getAnalyses() {
         return analyses;
     }
 
-    public void setAnalyses(List<Analysis> analyses) {
+    public void setAnalyses(Set<Analysis> analyses) {
         this.analyses = analyses;
     }
 }
