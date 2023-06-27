@@ -122,6 +122,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--clr-light);
+    cursor: pointer;
 }
 
 .user a {
@@ -175,7 +177,6 @@ header {
 }
 
 .btn btn--start {
-
     background-color: var(--clr-primary);
     color: var(--clr-light);
     text-decoration: none;
@@ -193,7 +194,7 @@ header {
     color: var(--clr-dark);
 }
 
-.login__bg {
+.login__bg, .signup__bg {
     visibility: hidden;
     position: fixed;
     top: 0;
@@ -207,11 +208,11 @@ header {
     align-items: center;
   }
 
-  .login__bg.show {
+.login__bg.show, .signup__bg.show {
     visibility: visible;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s
-  }
+}
 
 #login__popup {
     background: var(--clr-light);
@@ -234,7 +235,7 @@ header {
     box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.2); /*x y 번짐 색상*/
 }
 
-#loginForm {
+#loginForm, #signupForm {
     width: 100%;
 
     display: flex;
@@ -243,7 +244,7 @@ header {
     justify-content: center;
 }
 
-.login__x {
+.login__x{
     position: absolute;
     top: 20px;
     right: 20px;
@@ -258,6 +259,24 @@ header {
 
 .login__title {
     margin: 0;
+}
+
+.signup__name {
+    margin-top: 5%;
+    width: 80%;
+    height: 3em;
+    flex-shrink: 0;
+
+    border-radius: 200px;
+    background: #FFF;
+    box-shadow: 0px 0px 10px 0px rgba(30, 98, 117, 0.50);
+}
+
+.signup__name input {
+    width: 80%;
+    height: 100%;
+
+    border:0 solid var(--clr-dark);
 }
 
 .login__email {
@@ -296,7 +315,7 @@ header {
     border:0 solid var(--clr-dark);
 }
 
-.login__submit input {
+.login__submit input, .signup__submit input {
     margin-top: 15%;
 
     width: 200px;
@@ -328,5 +347,5 @@ header {
 
 @keyframes fadeIn {
     from {opacity: 0;}
-    to {opacity: 1;}
+    to {opacity:1 ;}
 }
