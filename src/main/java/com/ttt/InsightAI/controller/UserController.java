@@ -4,45 +4,50 @@ import com.ttt.InsightAI.domain.Analysis;
 import com.ttt.InsightAI.domain.Diary;
 import com.ttt.InsightAI.domain.User;
 import com.ttt.InsightAI.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
     private final UserRepository userRepository;
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signUp(@RequestBody User user) {
+    public ResponseEntity<Map<String, String>> signUp(@RequestBody User user) {
         if (user.getName() == null || user.getName().trim().isEmpty()) {
-            return ResponseEntity.badRequest().body("Name is required");
-        }
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "Name is required"));        }
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            return ResponseEntity.badRequest().body("User with this email already exists");
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", "User with this email already exists"));
         }
         userRepository.save(user);
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.ok(Collections.singletonMap("message", "User registered successfully"));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<Map<String, Object>> login(@RequestBody User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
         if (existingUser == null || !existingUser.getPassword().equals(user.getPassword())) {
-            return ResponseEntity.badRequest().body("Invalid email or password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.singletonMap("error", "Invalid email or password"));
         }
-        return ResponseEntity.ok("User logged in successfully");
+        LOGGER.info("User logged in: {}", user.getEmail());
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "User logged in");
+        response.put("userId", existingUser.getId());
+        return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{email}/analyses")
+    @GetMapping("/{email}/diaries")
     public ResponseEntity<List<Diary>> getUserDiaries(@PathVariable String email) {
         User user = userRepository.findByEmail(email);
         if (user == null) {

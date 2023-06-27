@@ -1,5 +1,9 @@
 package com.ttt.InsightAI.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,13 +14,15 @@ public class Analysis {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    @MapsId
+    @JsonBackReference(value = "a_diary")
+    private Diary diary;
+
     @ManyToOne
+    @JsonBackReference(value = "a_user")
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @OneToOne
-    @JoinColumn(name = "diary_id", nullable = false)
-    private Diary diary;
 
     // Question 1
     @ElementCollection
@@ -45,6 +51,8 @@ public class Analysis {
     // Emotion
     @ElementCollection
     private List<String> emotionKeywords;
+    @Column
+    private String emotionExplanation;
 
     // Getter and Setter
     public Long getId() {
@@ -142,6 +150,4 @@ public class Analysis {
     public void setEmotionKeywords(List<String> emotionKeywords) {
         this.emotionKeywords = emotionKeywords;
     }
-
-    // getters and setters
 }

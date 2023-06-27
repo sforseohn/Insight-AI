@@ -1,5 +1,9 @@
 package com.ttt.InsightAI.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,6 +14,8 @@ public class Diary {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference(value="d_user")
+    @JoinColumn(name = "user_id")
     private User user;
 
     private String title;
@@ -17,6 +23,8 @@ public class Diary {
     private LocalDateTime date;
 
     @OneToOne(mappedBy = "diary", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    @JsonManagedReference(value="a_diary")
     private Analysis analysis;
 
     // Getter and Setter
