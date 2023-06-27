@@ -29,3 +29,13 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         console.error('Error:', error);
     });
 });
+
+function loginPopup() {
+    var popup = document.getElementById("login__bg");
+    popup.classList.add("show");
+}
+
+function loginPopdown() {
+    var popup = document.getElementById("login__bg");
+    popup.classList.remove("show");
+}

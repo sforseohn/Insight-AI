@@ -7,7 +7,6 @@
     <title>Document</title>
     <!-- Google Fonts -->
     <link href="https://webfontworld.github.io/NanumBarunGothic/NanumBarunGothic.css" rel="stylesheet">
-    <link rel="css/common.css" rel="stylesheet"/>
     <link href="css/main.css" rel="stylesheet"/>
 </head>
 <body>
@@ -22,9 +21,9 @@
         </ul>
     </nav>
 
-    <nav class="user">
-        <div class="login">
-            <a href="login.html" class="btn btn__login">로그인</a>
+    <nav class="user" >
+        <div class="login" onclick="loginPopup()">
+            로그인
         </div>
         <div class="signup">
             <a href="signup.html" class="btn btn__signup">회원가입</a>
@@ -33,15 +32,40 @@
 </header>
 
 <main class="main main--file">
-    <img src="images/file_img.png">
-    <h1 class="main__title">나를 알아보는
-        일기 성향 분석 서비스</h1>
-    <p class="main__intro">일기를 작성하고, Chat Gpt의 분석을 통해
+    <div id="login__bg" class="login__bg">
+        <div id="login__popup">
+            <div class="login__x" onclick="loginPopdown()">X</div>
+            <form id="loginForm">
+                <img src="./images/TTT.svg" alt="TTT" class="login__logo">
+                <h1 class="login__title">로그인</h1>
+                <div class="login__email">
+                    <input type="text" id="email" name="email" value="이메일을 입력해주세요.">
+                </div>
+                <div class="login__password">
+                    <input type="text" id="password" name="password" value="비밀번호를 입력해주세요.">
+                </div>
+                <div class="login__submit">
+                    <input type="submit" value="로그인">
+                </div>
+            </form>
+            <a href="signup.html" class="login__signup">아직 회원이 아니신가요? 회원 가입</a>
+        </div>
+
+    </div>
+
+    <img src="images/file_img.png" class="main__file">
+    <h1 class="main__title">
+        나를 알아보는 <br>
+        일기 성향 분석 서비스
+    </h1>
+    <p class="main__intro">
+        일기를 작성하고, Chat Gpt의 분석을 통해 <br>
         나의 감정과 행동에 대한 객관적인 지표를 얻어보세요!
     </p>
     <div class="start">
         <a href="" class="btn btn--start">바로 시작하기</a>
     </div>
 </main>
+<script src="./js/login.js"></script>
 </body>
 </html>
