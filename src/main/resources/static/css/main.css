@@ -104,6 +104,11 @@ header {
     align-items: center;
     color: var(--clr-primary);
     cursor: pointer;
+    &:hover {
+        background: linear-gradient(135deg, var(--clr-primary), var(--clr-grad) 100%);
+        color: var(--clr-light);
+        border: none;
+    }
 }
 
 .signup {
@@ -124,6 +129,11 @@ header {
     align-items: center;
     color: var(--clr-light);
     cursor: pointer;
+    &:hover {
+        border: 1.5px solid var(--clr-primary);
+        background: var(--clr-light);
+        color: var(--clr-primary);
+    }
 }
 
 .user a {
@@ -174,6 +184,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .btn btn--start {
@@ -189,11 +200,6 @@ header {
     text-decoration: none;
 }
 
-.btn btn--start::hover {
-    background-color: var(--clr-primary);
-    color: var(--clr-dark);
-}
-
 .login__bg, .signup__bg {
     visibility: hidden;
     position: fixed;
@@ -206,7 +212,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
 .login__bg.show, .signup__bg.show {
     visibility: visible;
@@ -326,7 +332,12 @@ header {
     background: linear-gradient(135deg, #1E6275 0%, #BAEFFF 100%);
     border:0 solid var(--clr-dark);
 
-    color: var(--clr-light)
+    color: var(--clr-light);
+    &:hover {
+        border: 1.5px solid var(--clr-primary);
+        background: var(--clr-light);
+        color: var(--clr-primary);
+    }
 }
 
 .login__signup {
@@ -337,6 +348,8 @@ header {
 
     left: 50%;
     transform: translate(-50%, 0%);
+
+
 }
 
 /* Add animation (fade in the popup) */
@@ -348,4 +361,16 @@ header {
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity:1 ;}
+}
+
+input[type=text] {
+    outline: none;
+    font-family: 'NanumBarunGothic', sans-serif;
+    font-size: medium;
+    padding-left: 10px;
+}
+
+input[type=text]::placeholder {
+    font-family: 'NanumBarunGothic', sans-serif;
+    font-size: medium;
 }

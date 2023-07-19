@@ -29,6 +29,7 @@ document.getElementById('diaryForm').addEventListener('submit', function(event) 
             console.log('Diary created and analysis completed successfully');
             alert('Diary created and analysis completed successfully');
             // Here, handle the analysis result
+            return "/diary-analysis";
         }
     })
     .catch((error) => {

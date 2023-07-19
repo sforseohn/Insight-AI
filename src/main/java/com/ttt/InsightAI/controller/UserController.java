@@ -4,6 +4,7 @@ import com.ttt.InsightAI.domain.Analysis;
 import com.ttt.InsightAI.domain.Diary;
 import com.ttt.InsightAI.domain.User;
 import com.ttt.InsightAI.repository.UserRepository;
+import com.ttt.InsightAI.service.OpenAiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/users")
 public class UserController {
     private final UserRepository userRepository;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     public UserController(UserRepository userRepository) {

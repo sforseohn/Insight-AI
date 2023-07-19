@@ -150,4 +150,12 @@ public class Analysis {
     public void setEmotionKeywords(List<String> emotionKeywords) {
         this.emotionKeywords = emotionKeywords;
     }
+
+    public String getEmotionExplanation() {
+        return emotionExplanation;
+    }
+
+    public void setEmotionExplanation(String emotionExplanation) {
+        this.emotionExplanation = emotionExplanation;
+    }
 }
